@@ -1,0 +1,379 @@
+/* ========================================
+   RESET E CONFIGURAÇÕES GLOBAIS
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Paleta de cores extraída da imagem:
+   #3A59D1 - Azul escuro (base)
+   #3D90D7 - Azul médio
+   #7AC6D2 - Azul claro/turquesa
+   #B5FCCD - Verde claro
+*/
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* Gradiente com as cores da paleta */
+  background: linear-gradient(
+    135deg,
+    #2a3f8f 0%,
+    #3a59d1 25%,
+    #3d90d7 60%,
+    #7ac6d2 100%
+  );
+  color: #fff;
+  min-height: 100vh;
+  padding: 40px 20px;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   CONTAINER E HEADER
+   ======================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 60px;
+  animation: fadeInDown 0.8s ease;
+}
+
+h1 {
+  font-size: 3rem;
+  /* Gradiente usando as cores da paleta */
+  background: linear-gradient(90deg, #3a59d1 0%, #7ac6d2 50%, #b5fccd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #b5fccd;
+  opacity: 0.9;
+}
+
+/* ========================================
+   TIMELINE - ESTRUTURA PRINCIPAL
+   ======================================== */
+.timeline {
+  position: relative;
+  padding: 40px 0;
+}
+
+/* Linha central da timeline com gradiente da paleta */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #3a59d1 0%,
+    #3d90d7 35%,
+    #7ac6d2 70%,
+    #b5fccd 100%
+  );
+  border-radius: 2px;
+}
+
+/* ========================================
+   TIMELINE - ITEMS E POSICIONAMENTO
+   ======================================== */
+.timeline-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+  position: relative;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Animação escalonada para cada item */
+.timeline-item:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.timeline-item:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.timeline-item:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.timeline-item:nth-child(4) {
+  animation-delay: 0.8s;
+}
+.timeline-item:nth-child(5) {
+  animation-delay: 1s;
+}
+
+/* Alterna os lados da timeline (zig-zag) */
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-right: auto;
+  margin-left: 0;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: left;
+}
+
+/* ========================================
+   TIMELINE - ÍCONES CENTRAIS
+   ======================================== */
+.timeline-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  /* Gradiente do azul escuro para o azul médio */
+  background: linear-gradient(135deg, #3a59d1 0%, #3d90d7 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  /* Box shadow usando o verde claro da paleta */
+  box-shadow: 0 0 0 8px rgba(181, 252, 205, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.timeline-icon:hover {
+  transform: translateX(-50%) scale(1.2);
+  /* Intensifica o brilho verde no hover */
+  box-shadow: 0 0 0 12px rgba(181, 252, 205, 0.3);
+  background: linear-gradient(135deg, #3d90d7 0%, #7ac6d2 100%);
+}
+
+/* ========================================
+   TIMELINE - CARDS DE CONTEÚDO
+   ======================================== */
+.timeline-content {
+  width: 45%;
+  background: rgba(58, 89, 209, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(181, 252, 205, 0.2);
+  border-radius: 12px;
+  padding: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+  background: rgba(61, 144, 215, 0.25);
+  transform: translateY(-5px);
+  /* Shadow usando o azul turquesa */
+  box-shadow: 0 10px 30px rgba(122, 198, 210, 0.3);
+  border-color: rgba(181, 252, 205, 0.4);
+}
+
+.timeline-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  /* Usa o azul médio para títulos */
+  color: #7ac6d2;
+}
+
+.timeline-duration {
+  /* Verde claro para duração */
+  color: #b5fccd;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
+/* ========================================
+   TIMELINE - DESCRIÇÃO (EXPANDÍVEL)
+   ======================================== */
+.timeline-description {
+  color: #e8f5f0;
+  line-height: 1.6;
+  display: none;
+}
+
+.timeline-content.active .timeline-description {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.timeline-description ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.timeline-description li {
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+}
+
+/* Bullet customizado usando o azul médio */
+.timeline-description li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: #3d90d7;
+  font-weight: bold;
+}
+
+/* ========================================
+   MODAL (PARA DISPOSITIVOS MOBILE)
+   ======================================== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  /* Gradiente de fundo com as cores escuras da paleta */
+  background: linear-gradient(135deg, #2a3f8f 0%, #3a59d1 100%);
+  border: 2px solid rgba(181, 252, 205, 0.3);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  animation: modalSlideIn 0.3s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #b5fccd;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.modal-close:hover {
+  background: rgba(181, 252, 205, 0.2);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+footer {
+  text-align: center;
+  margin-top: 80px;
+  padding: 20px;
+  color: #b5fccd;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* ========================================
+   RESPONSIVIDADE (MOBILE)
+   ======================================== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  /* Timeline lateral no mobile */
+  .timeline::before {
+    left: 30px;
+  }
+
+  .timeline-item {
+    justify-content: flex-start;
+    padding-left: 70px;
+  }
+
+  .timeline-icon {
+    left: 30px;
+  }
+
+  .timeline-content {
+    width: 100%;
+    text-align: left !important;
+    margin: 0 !important;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* ========================================
+   ANIMAÇÕES
+   ======================================== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
